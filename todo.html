@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Todo</title>
 </head>
 <body>
-    
+    <main class="container mt-5">
+        <div class="justify-content-end">
+            <a href="add-julien.html">
+                <button type="button" id="addButton">
+                + Add Task
+                </button>
+            </a>
+        </div>
+        <div class="container mt-5">
+            <h1>ToDos</h1>
+            <select id="user-select" class="form-control mb-3">
+                <!-- Add options for users here -->
+            </select>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody id="todos-container">
+                    <!-- ToDos will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="todo-julien.js"></script>
 </body>
 </html>

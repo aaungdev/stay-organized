@@ -1,28 +1,32 @@
 "use strict";
 
-const selectUsers = document.getElementById("#selectUsers");
-const displayTasks = document.querySelector("#displayTasks");
+$(document).ready(function () {
+    console.log("Document ready");
 
-fetch("http://localhost:3000/todos")
-  .then((response) => response.json())
-  .then((todos) => {
-    console.log(todos);
-  });
-  
-.catch(error => {
-   console.error('Error:', error);
- });
+    // Fetch users and insert them into the user-select dropdown
+    fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(users => {
+            console.log("Users fetched:", users);
+            users.forEach(user => {
+                $('#user-select').append(`<option value="${user.id}">${user.name}</option>`);
+            });
+        })
+        .catch(error => console.error("Error fetching users:", error));
 
-selectUsers.addEventListener(`change`, () => {
-  const userId = selectUsers.value;
-  fetch("http://localhost:3000/todos")
-    .then((response) => response.json())
-    .then((tasks) => {
-      displayTasks.innerHTML = "";
-      tasks.foreach((tasks) => {
-        const displayTasks = document.createElement("div");
-        displayTasks.textContent = tasks.text;
-        displayTasks.appendChild(displayTasks);
-      });
+    // Fetch ToDos for the selected user and insert them into the table
+    $('#user-select').change(function () {
+        const userId = $(this).val();
+        console.log("Selected user ID:", userId);
+        fetch(`http://localhost:3000/api/todos/byuser/${userId}`)
+            .then(response => response.json())
+            .then(todos => {
+                console.log("Todos fetched:", todos);
+                $('#todos-container').html(todos.map(todo => `<tr>
+                        <td>${todo.description}</td>
+                        <td>${todo.deadline}</td>
+                    </tr>`).join(''));
+            })
+            .catch(error => console.error("Error fetching todos:", error));
     });
 });
