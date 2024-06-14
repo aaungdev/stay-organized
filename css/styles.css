@@ -7,3 +7,18 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+
+
+
+form {
+    margin-bottom: 20px;
+}
+
+
+select, input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
