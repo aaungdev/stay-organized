@@ -6,7 +6,7 @@ body {
 }
 
 .background {
-  background-image: url('../images/background.jpg');
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -34,7 +34,7 @@ header {
 
 h1 {
   font-size: 3rem;
-  color: #365E32;
+  color: #365e32;
 }
 
 h2 {
@@ -59,7 +59,7 @@ p {
   margin: 0.3em;
   padding: 1em 2em;
   color: white;
-  background-color: #81A263;
+  background-color: #81a263;
   text-decoration: none;
   border-radius: 0.3em;
   transition: background-color 0.3s;
@@ -67,7 +67,7 @@ p {
 }
 
 .navButton:hover {
-  background-color: #365E32;
+  background-color: #365e32;
 }
 
 .todoImagesContainer {
@@ -108,4 +108,110 @@ img.middleRight {
   top: 50%;
   right: 10%;
   transform: translateY(-50%);
+}
+/* General styles for the container and cards */
+.todosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2em 0;
+}
+
+.todoCard {
+  background-color: #f1f8e9;
+  border: 1px solid #81a263;
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  margin: 1em;
+  padding: 1.5em;
+  max-width: 300px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.todoCard img {
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.todoCard button {
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: white;
+  background-color: #81a263;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.todoCard button:hover {
+  background-color: #365e32;
+}
+
+.todoCard h2 {
+  font-size: 1.5rem;
+  color: #365e32;
+  margin-bottom: 0.5em;
+}
+
+.todoCard input {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #81a263;
+  border-radius: 0.25em;
+  font-size: 1rem;
+}
+
+.todoCard p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5em 0;
+}
+
+.todoCard p strong {
+  color: #81a263;
+}
+
+/* User selection styles */
+.userSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.userSelect label {
+  font-size: 1rem;
+  color: #333;
+  margin-right: 0.5em;
+}
+
+.userSelect select {
+  padding: 0.5em;
+  font-size: 1rem;
+  border: 1px solid #81a263;
+  border-radius: 0.5em;
+  margin-right: 1em;
+}
+
+/* Add Task button styles */
+#addTaskButton {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: white;
+  background-color: #81a263;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#addTaskButton:hover {
+  background-color: #365e32;
 }
