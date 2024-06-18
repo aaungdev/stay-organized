@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Todo</title>
+  </head>
+  <body>
+    <main>
+      <h1>Todo</h1>
+      <h3>User</h3>
+      <div>
+        <select id="userDropdown" title="userData">
+          <option value="">Select...</option>
+        </select>
+      </div>
+
+      <h3>Category</h3>
+      <div>
+        <select id="categoryDropdown" title="categoryData">
+          <option value="">Select...</option>
+        </select>
+      </div>
+
+      <h3>Priority</h3>
+      <div>
+        <select id="priorityDropdown" title="priorityData">
+          <option value="">Select...</option>
+        </select>
+      </div>
+
+      <button id="addTaskButton">+ Add Task</button>
+    </main>
+    <script>
+      "use strict";
+const usersSelect = document.querySelector("#usersDropdown");
+const categorySelect = document.querySelector("#categoryDropdown");
+const prioritySelect = document.querySelector("#prioritySelect");
+
+      fetch("http://localhost:80830/api/users")
+        .then((response) => response.json())
+        .then((users) => {
+          console.log(users);
+          loadUsersDropdown(users);
+        });
+
+        function loadUsersDropdown(users) {
+            usersDropdown.innerText = "";
+            for (const user of users) {
+                buildUsersDropdown(users)
+            }
+
+            function buildUsersDropdown(user) {
+                let option = document.createElement("option");
+                option.text = user.name;
+                usersDropdown.appendChild(option)
+            }
+        }
+
+        fetch("http://localhost:80830/api/categories")
+        .then((response) => response.json())
+        .then((categories) => {
+          console.log(categories);
+          loadCategorysDropdown(categories);
+        });
+
+        function loadCategorysDropdown(categories) {
+            categoryDropdown.innerText = "";
+            for (const category of categories) {
+                buildCategoryDropdown(categories)
+            }
+
+            function buildCategoryDropdown(categories) {
+                let option = document.createElement("option");
+                option.text = user.name;
+                categoryDropdown.appendChild(option)
+            }
+        }
+
+
+
+
+
+
+
+    </script>
+  </body>
 </html>
