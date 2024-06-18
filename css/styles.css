@@ -1,9 +1,111 @@
-* {
-    font-family: 'Roboto', sans-serif;
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+.background {
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(231, 211, 127, 0.5);
+}
+
+header {
+  margin-top: 2em;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #365E32;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+p {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 1.25em;
+}
+
+.navigationButtons {
+  margin-top: 1.25em;
+  position: relative;
+  z-index: 1;
+}
+
+.navButton {
+  display: inline-block;
+  margin: 0.3em;
+  padding: 1em 2em;
+  color: white;
+  background-color: #81A263;
+  text-decoration: none;
+  border-radius: 0.3em;
+  transition: background-color 0.3s;
+  font-size: 1.125rem;
+}
+
+.navButton:hover {
+  background-color: #365E32;
+}
+
+.todoImagesContainer {
+  margin-top: 2em;
+  position: relative;
+  z-index: 1;
+}
+
+.todoImagesContainer img {
+  max-width: 100px;
+  margin: 0.5em;
+}
+
+.overlayImages {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.overlayImages img {
+  position: absolute;
+  max-width: 12.5em;
+  max-height: 12.5em;
+}
+
+img.middleLeft {
+  max-width: 16em;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+}
+
+img.middleRight {
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
 }
