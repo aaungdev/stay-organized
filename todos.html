@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
             <h1>ToDos</h1>
             <select id="user-select" class="form-control mb-3">
                 <!-- Add options for users here -->
-            </select>
+            <!-- </select>
             <table class="table">
                 <thead>
                     <tr>
@@ -56,10 +56,41 @@
                 </thead>
                 <tbody id="todos-container">
                     <!-- ToDos will be inserted here -->
-                </tbody>
+                <!-- </tbody>
             </table>
         </div>
     </main>
     <script src="todo-julien.js"></script>
+</body>
+</html> --> --> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDos - Stay Organized</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="background">
+        <header>
+            <h1>ToDos</h1>
+        </header>
+        <main>
+            <div class="userSelect">
+                <label for="user">User:</label>
+                <select id="user" name="user">
+                    <option value="1">Ian Auston</option>
+                    <option value="2">Sidolalee Grace</option>
+                </select>
+                <button id="addTaskButton">+ Add Task</button>
+            </div>
+            <div class="todosContainer">
+            </div>
+        </main>
+    </div>
+    <script src="scripts/todos.js"></script>
 </body>
 </html>
