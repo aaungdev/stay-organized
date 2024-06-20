@@ -109,12 +109,19 @@ img.middleRight {
   right: 10%;
   transform: translateY(-50%);
 }
+
 /* General styles for the container and cards */
+body {
+  font-family: Arial, sans-serif;
+}
+
 .todosContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 2em 0;
+  max-height: 80vh; /* Adjust as needed */
+  overflow-y: auto;
 }
 
 .todoCard {
@@ -123,24 +130,24 @@ img.middleRight {
   border-radius: 0.5em;
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
   margin: 1em;
-  padding: 1.5em;
-  max-width: 300px;
+  padding: 1em; /* Reduced padding */
+  width: 300px;  /* Adjust width as needed */
   text-align: left;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .todoCard img {
   align-self: center;
   margin-bottom: 10px;
+  width: 20px;  /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
 }
 
 .todoCard button {
-  margin-top: 5px;
-  margin-right: 5px;
-  padding: 0.5em 1em;
-  font-size: 1rem;
+  padding: 0.4em 0.8em; /* Increased padding */
+  font-size: 1rem; /* Increased font size */
   color: white;
   background-color: #81a263;
   border: none;
@@ -153,23 +160,41 @@ img.middleRight {
   background-color: #365e32;
 }
 
+.todoCard .buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 0.5em; /* Move buttons down */
+  right: 0.5em; /* Move buttons slightly left */
+}
+
+.todoCard .buttonGroup button {
+  margin-left: 0.5em; /* Add margin between buttons */
+  flex: none; /* Ensure buttons don't stretch */
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .todoCard h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Reduced font size */
   color: #365e32;
   margin-bottom: 0.5em;
 }
 
 .todoCard input {
   width: 100%;
-  padding: 0.5em;
+  padding: 0.4em; /* Reduced padding */
   margin-bottom: 0.5em;
   border: 1px solid #81a263;
   border-radius: 0.25em;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size */
 }
 
 .todoCard p {
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size */
   color: #333;
   margin: 0.5em 0;
 }
@@ -198,6 +223,8 @@ img.middleRight {
   border: 1px solid #81a263;
   border-radius: 0.5em;
   margin-right: 1em;
+  position: relative;
+  z-index: 10; /* Ensure the dropdown is clickable */
 }
 
 /* Add Task button styles */
