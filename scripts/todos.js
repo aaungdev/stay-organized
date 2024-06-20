@@ -8,69 +8,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiUrlTodos = "http://localhost:8083/api/todos";
   const addTaskButton = document.getElementById("addTaskButton");
 
-  userDropDown.addEventListener("change", handleUserChange);
-  addTaskButton.addEventListener("click", handleAddTask);
-
-  function handleUserChange() {
+  userDropDown.addEventListener("change", function () {
     const userId = this.value;
     if (userId) {
       populateUserDetails(userId);
-    } else {
-      usersDetail.innerHTML = "";
     }
-  }
+  });
 
-  function handleAddTask() {
-    const userId = userDropDown.value;
-    if (!userId) {
-      alert("Please select a user to add a task.");
-      return;
-    }
-
-    const newTask = {
-      title: "New Task",
-      category: "General",
-      description: "New task description",
-      deadline: "2023-12-31",
-      priority: "Medium",
-      userId: parseInt(userId),
-      completed: false,
-    };
-
-    fetch(apiUrlTodos, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTask),
-    })
-      .then((response) => response.json())
-      .then((task) => {
-        const detailsDiv = createTaskCard(task, userId);
-        usersDetail.appendChild(detailsDiv);
-      })
-      .catch((error) => {
-        console.error("Error adding task:", error);
-      });
-  }
+  addTaskButton.addEventListener("click", addTask);
 
   function getUserDropDown() {
     fetch(apiUrlUsers)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
         const defaultOption = document.createElement("option");
         defaultOption.innerText = "Select a user";
         defaultOption.value = "";
         userDropDown.appendChild(defaultOption);
 
-        data.forEach((user) => {
+        data.forEach(function (user) {
           const option = document.createElement("option");
           option.innerText = user.name;
           option.value = user.id;
           userDropDown.appendChild(option);
         });
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.error("Error fetching users:", error);
       });
   }
@@ -78,14 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function populateUserDetails(userId) {
     usersDetail.innerHTML = "";
     fetch(apiUrlTodosByUser + userId)
-      .then((response) => response.json())
-      .then((userData) => {
-        userData.forEach((task) => {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (userData) {
+        userData.forEach(function (task) {
           const detailsDiv = createTaskCard(task, userId);
           usersDetail.appendChild(detailsDiv);
         });
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.error("Error fetching ToDos:", error);
       });
   }
@@ -143,14 +110,17 @@ document.addEventListener("DOMContentLoaded", function () {
     saveButton.innerHTML = "&#x2714;"; // Check mark for save
     saveButton.style.display = "none";
     saveButton.addEventListener("click", function () {
-      const updatedTask = {
-        title: taskTitle.value,
-        category: taskCategory.value,
-        description: taskDescription.value,
-        deadline: taskDeadline.value,
-        priority: taskPriority.value,
-      };
-      updateTask(task.id, updatedTask, userId);
+      updateTask(
+        task.id,
+        {
+          title: taskTitle.value,
+          category: taskCategory.value,
+          description: taskDescription.value,
+          deadline: taskDeadline.value,
+          priority: taskPriority.value,
+        },
+        userId
+      );
       taskTitle.disabled = true;
       taskCategory.disabled = true;
       taskDescription.disabled = true;
@@ -179,6 +149,37 @@ document.addEventListener("DOMContentLoaded", function () {
     return detailsDiv;
   }
 
+  function addTask() {
+    const userId = userDropDown.value;
+    const newTask = {
+      title: "New Task",
+      category: "General",
+      description: "New task description",
+      deadline: "2023-12-31",
+      priority: "Medium",
+      userId: parseInt(userId),
+      completed: false,
+    };
+
+    fetch(apiUrlTodos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTask),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (task) {
+        const detailsDiv = createTaskCard(task, userId);
+        usersDetail.appendChild(detailsDiv); // Add the new task to the list
+      })
+      .catch(function (error) {
+        console.error("Error adding task:", error);
+      });
+  }
+
   function updateTask(taskId, updatedTask, userId) {
     fetch(apiUrlTodos + "/" + taskId, {
       method: "PATCH",
@@ -187,11 +188,13 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(updatedTask),
     })
-      .then((response) => response.json())
-      .then(() => {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function () {
         populateUserDetails(userId); // Refresh the list
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.error("Error updating task:", error);
       });
   }
@@ -200,10 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(apiUrlTodos + "/" + taskId, {
       method: "DELETE",
     })
-      .then(() => {
+      .then(function () {
         populateUserDetails(userId); // Refresh the list
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.error("Error deleting task:", error);
       });
   }
